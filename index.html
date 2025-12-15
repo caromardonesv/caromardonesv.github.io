@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Banco de Material de Inglés</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root{
+      --bg:#f5f7fb; --primary:#2563eb; --soft:#e0e7ff;
+      --text:#111827; --muted:#6b7280; --border:#e5e7eb;
+      --card:#ffffff;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,sans-serif;background:var(--bg);color:var(--text)}
+    .app{max-width:1200px;margin:auto;padding:24px}
+    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+    h1{margin:0;font-size:1.6rem}
+    .layout{display:grid;grid-template-columns:2fr 1.2fr;gap:18px}
+    @media (max-width:900px){.layout{grid-template-columns:1fr}}
+
+    .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px}
+    h2{margin:0 0 12px;font-size:1.1rem}
+
+    .filters{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:10px}
+    @media (max-width:900px){.filters{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:560px){.filters{grid-template-columns:1fr}}
+
+    label{display:block;font-size:.8rem;color:var(--muted);margin-bottom:4px}
+    select,input,textarea{
+      width:100%;padding:8px;border-radius:10px;border:1px solid var(--border);
+      background:#f9fafb;outline:none
+    }
+    textarea{min-height:70px;resize:vertical}
+
+    button{
+      border:none;border-radius:999px;padding:8px 14px;cursor:pointer;font-size:.85rem;
+      display:inline-flex;align-items:center;gap:6px
+    }
+    .btn-primary{background:var(--primary);color:#fff}
+    .btn-secondary{background:var(--soft);color:#1e40af}
+
+    .top-actions{display:flex;justify-content:flex-end;gap:8px;margin:10px 0}
+
+    .hidden{display:none}
+
+    .material-card{
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:12px;
+      margin-bottom:10px;
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:10px;
+      background:#fff;
+    }
+    .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+    .pill{
+      font-size:.75rem;background:#f3f4f6;color:#374151;
+      padding:2px 8px;border-radius:999px
+    }
+    .actions{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+    .link{font-size:.8rem;color:var(--primary);text-decoration:none}
+    .muted{color:var(--muted);font-size:.85rem;margin:0}
+    .form-row{display:grid;gap:10px}
+    .form-actions{display:flex;justify-content:flex-end;gap:8px}
+    .banner{
+      font-size:.8rem;
+      background:#eff6ff;
+      border:1px solid #dbeafe;
+      color:#1e40af;
+      padding:8px 10px;
+      border-radius:12px;
+      margin:0 0 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <header>
+      <h1>Banco de Material de Inglés</h1>
+    </header>
+
+    <div class="layout">
+      <!-- LISTADO -->
+      <section class="card">
+        <h2>Material disponible</h2>
+
+        <div class="filters">
+          <div>
+            <label for="courseFilter">Curso</label>
+            <select id="courseFilter">
+              <option value="">Todos</option>
+              <option>1° Medio</option>
+              <option>2° Medio</option>
+              <option>3° Medio</option>
+              <option>4° Medio</option>
+              <option>7° Básico</option>
+              <option>8° Básico</option>
+            </select>
+          </div>
+          <div>
+            <label for="skillFilter">Habilidad</label>
+            <select id="skillFilter">
+              <option value="">Todas</option>
+              <option>Listening</option>
+              <option>Reading</option>
+              <option>Writing</option>
+              <option>Speaking</option>
+              <option>Grammar</option>
+              <option>Vocabulary</option>
+            </select>
+          </div>
+          <div>
+            <label for="topicFilter">Tema</label>
+            <select id="topicFilter">
+              <option value="">Todos</option>
+              <option>Environment</option>
+              <option>Daily routines</option>
+              <option>Technology</option>
+              <option>News</option>
+              <option>Food</option>
+              <option>Culture</option>
+            </select>
+          </div>
+          <div>
+            <label for="searchInput">Buscar</label>
+            <input id="searchInput" placeholder="Título, descripción, tipo..." />
+          </div>
+        </div>
+
+        <div class="top-actions">
+          <button class="btn-secondary" id="clearFiltersBtn" type="button">Limpiar filtros</button>
+          <button class="btn-primary" id="toggleFormBtn" type="button">+ Nuevo material</button>
+        </div>
+
+        <p class="muted" id="counter">3 materiales</p>
+
+        <div id="materialsContainer">
+          <article class="material-card">
+            <div>
+              <div style="font-weight:600">Environmental Poster – Reduce, Reuse, Recycle</div>
+              <div class="meta">
+                <span class="pill">2° Medio</span>
+                <span class="pill">Writing</span>
+                <span class="pill">Environment</span>
+              </div>
+              <p class="muted" style="margin:8px 0 0">Actividad de escritura guiada para crear un afiche ambiental con conectores.</p>
+            </div>
+            <div class="actions">
+              <span class="pill">Guía + afiche</span>
+              <a class="link" href="#" onclick="return false;">Abrir recurso</a>
+              <button class="btn-secondary" type="button">Editar</button>
+              <button class="btn-secondary" type="button">Eliminar</button>
+            </div>
+          </article>
+
+          <article class="material-card">
+            <div>
+              <div style="font-weight:600">Listening – Daily Routines (A1)</div>
+              <div class="meta">
+                <span class="pill">7° Básico</span>
+                <span class="pill">Listening</span>
+                <span class="pill">Daily routines</span>
+              </div>
+              <p class="muted" style="margin:8px 0 0">Ejercicios de comprensión y adverbios de frecuencia.</p>
+            </div>
+            <div class="actions">
+              <span class="pill">Audio + hoja de trabajo</span>
+              <a class="link" href="#" onclick="return false;">Abrir recurso</a>
+              <button class="btn-secondary" type="button">Editar</button>
+              <button class="btn-secondary" type="button">Eliminar</button>
+            </div>
+          </article>
+
+          <article class="material-card">
+            <div>
+              <div style="font-weight:600">Reading – News Article Worksheet</div>
+              <div class="meta">
+                <span class="pill">2° Medio</span>
+                <span class="pill">Reading</span>
+                <span class="pill">News</span>
+              </div>
+              <p class="muted" style="margin:8px 0 0">Guía de comprensión lectora con preguntas e identificación de ideas principales.</p>
+            </div>
+            <div class="actions">
+              <span class="pill">Guía</span>
+              <a class="link" href="#" onclick="return false;">Abrir recurso</a>
+              <button class="btn-secondary" type="button">Editar</button>
+              <button class="btn-secondary" type="button">Eliminar</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- FORMULARIO (solo visual) -->
+      <aside class="card" id="formCard">
+        <h2 id="formTitle">Ingresar material</h2>
+        <div class="banner hidden" id="editBanner">Editando material. Guarda los cambios o cierra para cancelar.</div>
+
+        <form id="materialForm" onsubmit="return false;">
+          <div class="form-row">
+            <div>
+              <label for="titleInput">Título *</label>
+              <input id="titleInput" required placeholder="Ej: Listening – Daily Routines (A1)" />
+            </div>
+
+            <div>
+              <label for="courseInput">Curso *</label>
+              <input id="courseInput" required placeholder="Ej: 1° Medio" />
+            </div>
+
+            <div>
+              <label for="skillInput">Habilidad *</label>
+              <input id="skillInput" required placeholder="Ej: Reading" />
+            </div>
+
+            <div>
+              <label for="topicInput">Tema *</label>
+              <input id="topicInput" required placeholder="Ej: Environment" />
+            </div>
+
+            <div>
+              <label for="typeInput">Tipo</label>
+              <input id="typeInput" placeholder="Guía, PPT, Video..." />
+            </div>
+
+            <div>
+              <label for="linkInput">Enlace (opcional)</label>
+              <input id="linkInput" placeholder="https://..." />
+            </div>
+
+            <div>
+              <label for="descriptionInput">Descripción</label>
+              <textarea id="descriptionInput" placeholder="Breve descripción del material..."></textarea>
+            </div>
+
+            <div class="form-actions">
+              <button class="btn-secondary" id="closeFormBtn" type="button">Cerrar</button>
+              <button class="btn-secondary hidden" id="cancelEditBtn" type="button">Cancelar edición</button>
+              <button class="btn-primary" type="button" id="submitBtn">Guardar material</button>
+            </div>
+          </div>
+        </form>
+      </aside>
+    </div>
+  </div>
+</body>
+</html>
